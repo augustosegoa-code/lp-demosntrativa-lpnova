@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sua marca aqui — Avaliação gratuita e tratamentos com resultado real em Curitiba." />
+  <title>Sua marca aqui | Curitiba</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --white:     #FFFFFF;
+      --cream:     #F7F5F2;
+      --sand:      #EDE9E3;
+      --line:      #E2DED8;
+      --muted:     #9B9590;
+      --body:      #4A4845;
+      --ink:       #1A1917;
+      --brown:     #9B7B55;
+      --brown-dk:  #7A5C38;
+      --brown-lt:  #C8A882;
+
+      --serif: 'DM Serif Display', serif;
+      --sans:  'Plus Jakarta Sans', sans-serif;
+
+      --max: 1080px;
+      --ease: 0.25s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); font-size: 16px; line-height: 1.65; color: var(--body); background: var(--white); -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; object-fit: cover; }
+    a { text-decoration: none; color: inherit; }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
+    .sec  { padding: 96px 32px; max-width: var(--max); margin: 0 auto; }
+
+    .label {
+      display: inline-block;
+      font-size: 10.5px; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--brown); margin-bottom: 20px;
+    }
+    .h1 { font-family: var(--serif); font-size: clamp(44px, 5.5vw, 72px); line-height: 1.05; color: var(--ink); font-weight: 400; }
+    .h2 { font-family: var(--serif); font-size: clamp(32px, 3.5vw, 50px); line-height: 1.1;  color: var(--ink); font-weight: 400; }
+    .h3 { font-family: var(--serif); font-size: clamp(22px, 2vw, 28px); line-height: 1.25; color: var(--ink); font-weight: 400; }
+    .lead { font-size: 17px; line-height: 1.75; color: var(--body); }
+    .small { font-size: 13px; line-height: 1.65; color: var(--body); }
+
+    /* ── BOTÕES ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 15px 32px; font-family: var(--sans); font-size: 13px;
+      font-weight: 600; letter-spacing: 0.04em; cursor: pointer;
+      border: none; transition: var(--ease); white-space: nowrap;
+    }
+    .btn-ink   { background: var(--ink); color: var(--white); }
+    .btn-ink:hover { background: var(--brown-dk); }
+    .btn-brown { background: var(--brown); color: var(--white); }
+    .btn-brown:hover { background: var(--brown-dk); }
+    .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+    .btn-ghost:hover { border-color: var(--ink); }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .hd {
+      max-width: var(--max); margin: 0 auto; padding: 0 32px;
+      height: 64px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-family: var(--serif); font-size: 20px; color: var(--ink); letter-spacing: -0.01em; }
+    .logo b { color: var(--brown); font-weight: 400; }
+    nav { display: flex; gap: 32px; align-items: center; }
+    nav a { font-size: 12.5px; font-weight: 500; color: var(--body); transition: color var(--ease); letter-spacing: 0.01em; }
+    nav a:hover { color: var(--brown); }
+
+    /* ── HERO ── */
+    #hero {
+      display: grid; grid-template-columns: 55% 45%;
+      min-height: 100vh; padding-top: 64px;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 80px 64px 80px 32px;
+    }
+    .hero-kicker {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--brown); margin-bottom: 28px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-kicker::before { content: ''; width: 28px; height: 1px; background: var(--brown); flex-shrink: 0; }
+    .hero-hl { margin-bottom: 28px; }
+    .hero-hl em { font-style: italic; color: var(--brown); }
+    .hero-sub { font-size: 16px; line-height: 1.75; color: var(--body); max-width: 420px; margin-bottom: 40px; }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-stats {
+      margin-top: 60px; padding-top: 36px; border-top: 1px solid var(--line);
+      display: flex; gap: 48px;
+    }
+    .stat-n { font-family: var(--serif); font-size: 36px; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+    .stat-l { font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+
+    .hero-right { position: relative; overflow: hidden; background: var(--sand); }
+    .hero-img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+    }
+    .hero-pill {
+      position: absolute; bottom: 40px; left: 40px; right: 40px;
+      background: rgba(255,255,255,0.96);
+      padding: 20px 24px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .hero-pill-icon { font-size: 22px; flex-shrink: 0; }
+    .hero-pill p { font-size: 13.5px; line-height: 1.5; color: var(--ink); font-weight: 400; }
+    .hero-pill p strong { font-weight: 600; display: block; }
+
+    /* ── BANNER URGÊNCIA ── */
+    #urgencia { background: var(--ink); }
+    .urg-inner {
+      max-width: var(--max); margin: 0 auto; padding: 0 32px;
+      min-height: 72px; display: flex; align-items: center;
+      justify-content: space-between; gap: 20px; flex-wrap: wrap;
+    }
+    .urg-tag {
+      background: var(--brown); padding: 4px 12px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--white);
+    }
+    .urg-msg { display: flex; align-items: center; gap: 16px; }
+    .urg-msg p { font-size: 14px; color: rgba(255,255,255,0.88); line-height: 1.4; }
+    .urg-msg strong { color: var(--white); font-weight: 600; }
+    .urg-right { display: flex; align-items: center; gap: 28px; flex-shrink: 0; }
+    #countdown { font-family: var(--serif); font-size: 24px; color: var(--white); letter-spacing: 0.02em; }
+    .urg-btn {
+      background: var(--brown); color: var(--white);
+      padding: 10px 22px; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: var(--ease); white-space: nowrap;
+    }
+    .urg-btn:hover { background: var(--brown-dk); }
+
+    /* ── CONTRASTE: SEM RESULTADO vs COM RESULTADO ── */
+    #contraste { background: var(--cream); }
+    .contraste-header { text-align: center; margin-bottom: 72px; }
+    .contraste-header .h2 { margin-bottom: 14px; }
+    .contraste-header p { color: var(--body); font-size: 16px; max-width: 480px; margin: 0 auto; }
+
+    .contraste-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+
+    .col-side {
+      padding: 48px 44px;
+      display: flex; flex-direction: column; gap: 28px;
+    }
+    .col-side.col-sem { background: var(--white); }
+    .col-side.col-com { background: var(--ink); }
+
+    .col-tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.20em;
+      text-transform: uppercase; margin-bottom: 8px;
+      display: inline-block;
+    }
+    .col-sem .col-tag { color: var(--muted); }
+    .col-com .col-tag { color: var(--brown-lt); }
+
+    .col-title {
+      font-family: var(--serif); font-size: 26px; line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .col-sem .col-title { color: var(--ink); }
+    .col-com .col-title { color: var(--white); }
+
+    .col-item { display: flex; gap: 14px; align-items: flex-start; }
+    .col-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+    .col-text { font-size: 14px; line-height: 1.6; }
+    .col-sem .col-text { color: var(--body); }
+    .col-com .col-text { color: rgba(255,255,255,0.82); }
+
+    /* ── OBJEÇÕES ── */
+    #objecoes { background: var(--white); }
+    .obj-header { text-align: center; margin-bottom: 64px; }
+    .obj-header .h2 { margin-bottom: 12px; }
+    .obj-header p { color: var(--body); font-size: 15px; }
+    .obj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .obj-card { padding: 36px 32px; background: var(--cream); }
+    .obj-q { font-size: 12px; font-weight: 600; letter-spacing: 0.10em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+    .obj-a { font-family: var(--serif); font-size: 21px; line-height: 1.4; color: var(--ink); margin-bottom: 10px; }
+    .obj-detail { font-size: 14px; color: var(--body); line-height: 1.7; }
+
+    /* ── AVALIAÇÃO ── */
+    #avaliacao { background: var(--cream); }
+    .aval-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .aval-img { height: 540px; overflow: hidden; position: relative; }
+    .aval-img img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .aval-img-tag {
+      position: absolute; bottom: 28px; left: 28px; right: 28px;
+      background: rgba(26,25,23,0.88); padding: 18px 22px;
+    }
+    .aval-img-tag p { font-family: var(--serif); font-size: 17px; font-style: italic; color: var(--white); line-height: 1.45; }
+    .aval-content .h2 { margin-bottom: 16px; }
+    .aval-content > p { font-size: 15px; color: var(--body); margin-bottom: 40px; }
+    .steps { display: flex; flex-direction: column; }
+    .step {
+      display: flex; gap: 20px; padding: 20px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .step:last-child { border-bottom: none; }
+    .step-n { font-family: var(--serif); font-size: 28px; color: var(--brown-lt); line-height: 1; flex-shrink: 0; width: 28px; }
+    .step-body h4 { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+    .step-body p  { font-size: 13px; color: var(--body); line-height: 1.6; }
+    .aval-cta { margin-top: 36px; }
+
+    /* ── TRATAMENTOS ── */
+    #tratamentos { background: var(--white); }
+    .trat-header { text-align: center; margin-bottom: 60px; }
+    .trat-header .h2 { margin-bottom: 12px; }
+    .trat-header p { font-size: 15px; color: var(--body); max-width: 440px; margin: 0 auto; }
+    .trat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
+    .trat-card { background: var(--cream); padding: 36px 28px; transition: box-shadow var(--ease); }
+    .trat-card:hover { box-shadow: 0 8px 36px rgba(0,0,0,0.06); }
+    .trat-dot { width: 8px; height: 8px; background: var(--brown); margin-bottom: 20px; }
+    .trat-card h3 { font-family: var(--serif); font-size: 20px; color: var(--ink); margin-bottom: 10px; font-weight: 400; }
+    .trat-card p  { font-size: 13px; color: var(--body); line-height: 1.7; }
+
+    /* ── PROMO ── */
+    #promo { background: var(--sand); }
+    .promo-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .promo-text .h2 { margin-bottom: 16px; }
+    .promo-text p { font-size: 15px; color: var(--body); line-height: 1.8; }
+    .promo-box { background: var(--ink); padding: 48px 40px; }
+    .promo-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.20em; text-transform: uppercase; color: var(--brown-lt); margin-bottom: 16px; }
+    .promo-name { font-family: var(--serif); font-size: 26px; color: var(--white); margin-bottom: 12px; font-weight: 400; }
+    .promo-desc { font-size: 14px; color: rgba(255,255,255,0.7); line-height: 1.7; margin-bottom: 28px; }
+    .promo-price { display: flex; align-items: flex-end; gap: 14px; margin-bottom: 28px; }
+    .price-de { font-size: 16px; color: rgba(255,255,255,0.35); text-decoration: line-through; }
+    .price-por { font-family: var(--serif); font-size: 46px; color: var(--white); line-height: 1; }
+    .price-por sup { font-size: 18px; vertical-align: top; margin-top: 8px; margin-right: 2px; }
+    .promo-vagas { font-size: 12px; color: var(--brown-lt); margin-top: 18px; display: flex; align-items: center; gap: 8px; }
+    .pulse { width: 8px; height: 8px; background: var(--brown-lt); border-radius: 50%; animation: pulse 1.4s ease-in-out infinite; flex-shrink: 0; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.9)} }
+
+    /* ── DEPOIMENTOS ── */
+    #depos { background: var(--white); }
+    .depos-header { text-align: center; margin-bottom: 56px; }
+    .depos-header .h2 { margin-bottom: 10px; }
+    .dep-list { max-width: 740px; margin: 0 auto; display: flex; flex-direction: column; gap: 2px; }
+    .dep-card { background: var(--cream); padding: 32px; display: grid; grid-template-columns: 44px 1fr; gap: 20px; }
+    .dep-av {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--brown-lt), var(--brown));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif); font-size: 18px; color: var(--white); flex-shrink: 0;
+    }
+    .dep-stars { color: var(--brown); font-size: 12px; margin-bottom: 8px; letter-spacing: 0.06em; }
+    .dep-card blockquote { font-family: var(--serif); font-size: 17px; font-style: italic; line-height: 1.6; color: var(--ink); margin-bottom: 10px; }
+    .dep-by { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* ── FORM ── */
+    #contato { background: var(--cream); }
+    .form-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .form-text .h2 { margin-bottom: 16px; }
+    .form-text > p { font-size: 15px; color: var(--body); line-height: 1.8; margin-bottom: 32px; }
+    .checks { display: flex; flex-direction: column; gap: 12px; }
+    .check { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: var(--body); }
+    .check::before { content: '✓'; color: var(--brown); font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .fbox { background: var(--white); padding: 44px 36px; }
+    .fbox-title { font-family: var(--serif); font-size: 22px; color: var(--ink); margin-bottom: 28px; font-weight: 400; }
+    .fg { margin-bottom: 16px; }
+    .fg label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--body); margin-bottom: 7px; }
+    .fg input, .fg select, .fg textarea {
+      width: 100%; padding: 12px 14px;
+      font-family: var(--sans); font-size: 14px; color: var(--ink);
+      background: var(--cream); border: 1.5px solid transparent;
+      outline: none; transition: border-color var(--ease); border-radius: 0;
+      appearance: none;
+    }
+    .fg input::placeholder, .fg textarea::placeholder { color: var(--muted); }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--brown); background: var(--white); }
+    .fg textarea { resize: vertical; min-height: 80px; }
+    .f-submit {
+      width: 100%; padding: 16px; font-family: var(--sans); font-size: 13px;
+      font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      background: var(--brown); color: var(--white); border: none; cursor: pointer;
+      transition: background var(--ease); margin-top: 6px;
+    }
+    .f-submit:hover { background: var(--brown-dk); }
+    .f-note { margin-top: 12px; font-size: 11px; color: var(--muted); text-align: center; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--ink); padding: 40px 32px; text-align: center; }
+    footer .logo { color: var(--white); margin-bottom: 14px; display: block; }
+    footer p { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 2; }
+
+    /* ── WHATSAPP ── */
+    .wa {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      width: 54px; height: 54px; background: #25D366; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: transform .2s ease;
+    }
+    .wa:hover { transform: scale(1.08); }
+    .wa svg { width: 26px; height: 26px; fill: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 920px) {
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { height: 360px; }
+      .hero-left { padding: 60px 28px 48px; }
+      .hero-stats { gap: 32px; }
+      .contraste-grid,
+      .obj-grid,
+      .aval-wrap,
+      .promo-wrap,
+      .form-wrap { grid-template-columns: 1fr; gap: 48px; }
+      .aval-img { height: 340px; }
+      .trat-grid { grid-template-columns: 1fr 1fr; }
+      nav { display: none; }
+      .sec { padding: 72px 24px; }
+    }
+    @media (max-width: 560px) {
+      .trat-grid { grid-template-columns: 1fr; }
+      .fbox { padding: 28px 20px; }
+      .hero-stats { gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="hd">
+  <div class="hd">
+    <div class="logo">Sua marca aqui</div>
+    <nav>
+      <a href="#contraste">Por que aqui</a>
+      <a href="#tratamentos">Tratamentos</a>
+      <a href="#promo">Oferta do mês</a>
+      <a href="#contato" class="btn btn-ink" style="padding:10px 22px;font-size:12px;">Agendar avaliação</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-kicker">Sua marca aqui · Curitiba</p>
+    <h1 class="h1 hero-hl">
+      Resultado<br>que você <em>vê</em><br>de verdade.
+    </h1>
+    <p class="hero-sub">
+      Não mais uma sessão sem retorno. Protocolo montado para a sua pele, com evolução que você acompanha desde a primeira visita.
+    </p>
+    <div class="hero-btns">
+      <a href="#contato" class="btn btn-ink">Quero minha avaliação gratuita</a>
+      <a href="#promo" class="btn btn-ghost">Ver oferta do mês</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-n">800+</div>
+        <div class="stat-l">pacientes atendidas</div>
+      </div>
+      <div>
+        <div class="stat-n">4.9★</div>
+        <div class="stat-l">avaliação média</div>
+      </div>
+      <div>
+        <div class="stat-n">5 anos</div>
+        <div class="stat-l">em Curitiba</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <!-- Foto: skin treatment / facial care — Unsplash free to use -->
+    <img
+      class="hero-img"
+      src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900&q=80&auto=format&fit=crop"
+      alt="Tratamento estético facial"
+      loading="eager"
+    />
+    <div class="hero-pill">
+      <div class="hero-pill-icon">✦</div>
+      <p>
+        <strong>Avaliação gratuita e sem compromisso</strong>
+        Você sai sabendo exatamente o que sua pele precisa.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- BANNER URGÊNCIA -->
+<section id="urgencia">
+  <div class="urg-inner">
+    <div class="urg-msg">
+      <span class="urg-tag">Junho</span>
+      <p><strong>Limpeza de pele + peeling superficial com 40% OFF.</strong> Apenas 12 vagas disponíveis este mês.</p>
+    </div>
+    <div class="urg-right">
+      <div>
+        <div style="font-size:9px;color:rgba(255,255,255,.5);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px">Encerra em</div>
+        <div id="countdown">--:--:--</div>
+      </div>
+      <a href="#contato" class="urg-btn">Garantir vaga</a>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO CONTRASTE: SEM RESULTADO × COM RESULTADO -->
+<section id="contraste" style="background:var(--cream);padding:96px 0 0;">
+  <div class="sec" style="padding-bottom:0;">
+    <div class="contraste-header">
+      <span class="label">O que muda</span>
+      <h2 class="h2">A diferença entre tratar<br>e tratar <em style="font-style:italic;color:var(--brown)">certo</em>.</h2>
+      <p>Você já investiu tempo e dinheiro. O problema quase nunca é a sua pele.</p>
+    </div>
+  </div>
+  <div class="contraste-grid">
+    <div class="col-side col-sem">
+      <div>
+        <span class="col-tag">O que você provavelmente já viveu</span>
+        <h3 class="col-title">Sessões que não chegam a lugar nenhum</h3>
+      </div>
+      <div class="col-item">
+        <span class="col-icon" style="color:var(--muted)">○</span>
+        <p class="col-text">Tratamento escolhido sem avaliação prévia — não foi feito para a sua pele, foi feito para o cardápio da clínica.</p>
+      </div>
+      <div class="col-item">
+        <span class="col-icon" style="color:var(--muted)">○</span>
+        <p class="col-text">Melhora nos primeiros dias, piora depois. Sem acompanhamento, o protocolo fica estagnado.</p>
+      </div>
+      <div class="col-item">
+        <span class="col-icon" style="color:var(--muted)">○</span>
+        <p class="col-text">Sensação de que você não sabe por onde continuar — e nem a profissional que te atendeu sabia.</p>
+      </div>
+      <div class="col-item">
+        <span class="col-icon" style="color:var(--muted)">○</span>
+        <p class="col-text">Resultado que some em semanas, deixando a pergunta: "afinal, valeu investir?"</p>
+      </div>
+    </div>
+    <div class="col-side col-com">
+      <div>
+        <span class="col-tag">O que acontece quando o protocolo é certo</span>
+        <h3 class="col-title" style="color:var(--white)">Evolução que você acompanha sessão a sessão</h3>
+      </div>
+      <div class="col-item">
+        <span class="col-icon" style="color:var(--brown-lt)">✦</span>
+        <p class="col-text">Avaliação antes de qualquer coisa. A indicação parte do que a sua pele precisa agora, não do que está em promoção.</p>
+      </div>
+      <div class="col-item">
+        <span class="col-icon" style="color:var(--brown-lt)">✦</span>
+        <p class="col-text">Protocolo ajustado a cada visita. Se algo precisa mudar, muda. Você nunca fica fazendo a mesma coisa sem sentido.</p>
+      </div>
+      <div class="col-item">
+        <span class="col-icon" style="color:var(--brown-lt)">✦</span>
+        <p class="col-text">Você entende o que está sendo feito e por quê. Sem mistério, sem venda de pacote que não faz sentido.</p>
+      </div>
+      <div class="col-item">
+        <span class="col-icon" style="color:var(--brown-lt)">✦</span>
+        <p class="col-text">Resultado que fica. Porque foi construído em cima de diagnóstico, não de tentativa e erro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OBJEÇÕES -->
+<section id="objecoes">
+  <div class="sec">
+    <div class="obj-header">
+      <span class="label">Dúvidas comuns</span>
+      <h2 class="h2">Você provavelmente<br>já pensou assim.</h2>
+      <p style="margin-top:12px;">As perguntas que a maioria tem antes de dar o primeiro passo.</p>
+    </div>
+    <div class="obj-grid">
+      <div class="obj-card">
+        <p class="obj-q">Já gastei muito e não vi resultado</p>
+        <p class="obj-a">Resultado ruim quase sempre vem de protocolo errado, não de pele difícil.</p>
+        <p class="obj-detail">Pele difícil é exceção. O que é comum é tratamento genérico aplicado sem avaliação real. É o primeiro ponto que a gente reverte.</p>
+      </div>
+      <div class="obj-card">
+        <p class="obj-q">Tenho medo de fazer algo e piorar</p>
+        <p class="obj-a">Procedimento seguro é procedimento bem indicado. Simples assim.</p>
+        <p class="obj-detail">Nada é realizado sem avaliação prévia. Se algo não fizer sentido para o seu caso neste momento, falamos isso com clareza — sem empurrar nada.</p>
+      </div>
+      <div class="obj-card">
+        <p class="obj-q">Não sei nem por onde começar</p>
+        <p class="obj-a">É exatamente para isso que existe a avaliação gratuita.</p>
+        <p class="obj-detail">Você não precisa chegar sabendo o que quer. Nossa função é ouvir, analisar e montar um caminho claro para o seu caso.</p>
+      </div>
+      <div class="obj-card">
+        <p class="obj-q">O resultado some rápido demais</p>
+        <p class="obj-a">Resultado que dura vem de protocolo contínuo, não de sessão isolada.</p>
+        <p class="obj-detail">Trabalhamos com acompanhamento porque é a continuidade que transforma. E você decide o ritmo — sem pressão de pacote fechado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AVALIAÇÃO -->
+<section id="avaliacao" style="background:var(--cream);padding:0;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;" class="aval-wrap-outer">
+    <div class="aval-img">
+      <img
+        src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=800&q=80&auto=format&fit=crop&crop=faces"
+        alt="Avaliação de pele"
+      />
+      <div class="aval-img-tag">
+        <p>"Você sai da avaliação com um protocolo real — não com uma lista de procedimentos para comprar."</p>
+      </div>
+    </div>
+    <div style="padding:80px 64px 80px 56px;display:flex;flex-direction:column;justify-content:center;">
+      <span class="label">A avaliação gratuita</span>
+      <h2 class="h2" style="margin-bottom:14px;">O que acontece quando você vem aqui.</h2>
+      <p style="font-size:15px;color:var(--body);margin-bottom:40px;">Em menos de uma hora, você sai com clareza sobre o que sua pele precisa e por onde começar.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-n">1</div>
+          <div class="step-body">
+            <h4>Conversa sobre sua pele e rotina</h4>
+            <p>Histórico, queixas, o que já tentou antes e o que espera alcançar.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">2</div>
+          <div class="step-body">
+            <h4>Análise presencial da pele</h4>
+            <p>Tipo, condição atual, sensibilidades e o que está causando as queixas.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">3</div>
+          <div class="step-body">
+            <h4>Indicação do protocolo</h4>
+            <p>O que faz sentido para o seu caso, com clareza sobre resultados esperados e tempo.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-n">4</div>
+          <div class="step-body">
+            <h4>Você decide, sem pressão</h4>
+            <p>Nenhuma obrigação de compra. Você escolhe se quer avançar, quando e como.</p>
+          </div>
+        </div>
+      </div>
+      <a href="#contato" class="btn btn-ink" style="margin-top:36px;display:inline-flex;">Agendar minha avaliação gratuita</a>
+    </div>
+  </div>
+</section>
+
+<!-- TRATAMENTOS -->
+<section id="tratamentos">
+  <div class="sec">
+    <div class="trat-header">
+      <span class="label">Tratamentos</span>
+      <h2 class="h2" style="margin-bottom:12px;">Cada procedimento indicado<br>para o seu momento.</h2>
+      <p>Sem pacotes fechados. Sem indicação genérica.</p>
+    </div>
+    <div class="trat-grid">
+      <div class="trat-card">
+        <div class="trat-dot"></div>
+        <h3>Limpeza de Pele</h3>
+        <p>Extração, esfoliação e hidratação adaptadas ao seu tipo de pele. Base de qualquer protocolo eficiente.</p>
+      </div>
+      <div class="trat-card">
+        <div class="trat-dot"></div>
+        <h3>Peeling Químico</h3>
+        <p>Renovação celular para manchas, textura irregular e sinais de envelhecimento. Concentração definida após avaliação.</p>
+      </div>
+      <div class="trat-card">
+        <div class="trat-dot"></div>
+        <h3>Lifting Facial</h3>
+        <p>Firmeza e redefinição do contorno com resultados progressivos e visíveis.</p>
+      </div>
+      <div class="trat-card">
+        <div class="trat-dot"></div>
+        <h3>Tratamento de Manchas</h3>
+        <p>Protocolo combinado para melasma, hiperpigmentação e manchas solares com acompanhamento de evolução.</p>
+      </div>
+      <div class="trat-card">
+        <div class="trat-dot"></div>
+        <h3>Hidratação Profunda</h3>
+        <p>Reposição de barreira cutânea para pele com aparência saudável e sensação de conforto real.</p>
+      </div>
+      <div class="trat-card">
+        <div class="trat-dot"></div>
+        <h3>Modelagem Corporal</h3>
+        <p>Drenagem linfática e massagem modeladora com foco em resultado estético e bem-estar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMO -->
+<section id="promo" style="background:var(--sand);">
+  <div class="sec">
+    <div class="promo-wrap">
+      <div class="promo-text">
+        <span class="label">Oferta do mês</span>
+        <h2 class="h2" style="margin-bottom:16px;">Um ponto de partida com resultado rápido.</h2>
+        <p>Para quem quer dar o primeiro passo sem grande investimento inicial. Procedimento básico, resultado visível, vagas limitadas.</p>
+      </div>
+      <div class="promo-box">
+        <p class="promo-eyebrow">Em destaque · Junho 2025</p>
+        <p class="promo-name">Limpeza de Pele + Peeling Superficial</p>
+        <p class="promo-desc">Combinação de limpeza profunda com peeling de concentração leve. Resultado imediato em textura e luminosidade. Indicado para todos os tipos de pele.</p>
+        <div class="promo-price">
+          <span class="price-de">R$ 220</span>
+          <span class="price-por"><sup>R$</sup>132</span>
+        </div>
+        <a href="#contato" class="btn btn-brown" style="display:flex;justify-content:center;">Quero garantir esta vaga</a>
+        <p class="promo-vagas"><span class="pulse"></span>Restam 12 vagas neste mês</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depos">
+  <div class="sec">
+    <div class="depos-header">
+      <span class="label">Resultados reais</span>
+      <h2 class="h2">Quem já deu o primeiro passo.</h2>
+    </div>
+    <div class="dep-list">
+      <div class="dep-card">
+        <div class="dep-av">A</div>
+        <div>
+          <div class="dep-stars">★★★★★</div>
+          <blockquote>"Depois de anos tentando resolver minha pele sozinha, em três meses de protocolo vi mais resultado do que em tudo que já fiz antes."</blockquote>
+          <p class="dep-by">Ana C. — tratamento de manchas</p>
+        </div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-av">M</div>
+        <div>
+          <div class="dep-stars">★★★★★</div>
+          <blockquote>"O que mais me surpreendeu foi a própria avaliação. Me explicaram o que acontecia na minha pele com clareza, sem empurrar nada. Isso me deu confiança para começar."</blockquote>
+          <p class="dep-by">Mariana F. — lifting facial</p>
+        </div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-av">R</div>
+        <div>
+          <div class="dep-stars">★★★★★</div>
+          <blockquote>"Fui com medo de piorar minha pele sensível. Saí com protocolo adaptado e resultado já na primeira sessão."</blockquote>
+          <p class="dep-by">Renata S. — limpeza e peeling</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section id="contato" style="background:var(--cream);">
+  <div class="sec">
+    <div class="form-wrap">
+      <div class="form-text">
+        <span class="label">Primeiro passo</span>
+        <h2 class="h2" style="margin-bottom:16px;">Agende sua avaliação gratuita.</h2>
+        <p>Você preenche, nossa equipe entra em contato em até 24 horas para confirmar o melhor horário.</p>
+        <div class="checks">
+          <div class="check">100% gratuita, sem obrigação de compra</div>
+          <div class="check">Atendimento personalizado, não é triagem genérica</div>
+          <div class="check">Você sai com protocolo claro, mesmo que não feche nada</div>
+          <div class="check">Horários flexíveis, inclusive aos sábados</div>
+        </div>
+      </div>
+      <div class="fbox">
+        <p class="fbox-title">Quero agendar minha avaliação</p>
+        <div class="fg">
+          <label for="nome">Seu nome</label>
+          <input type="text" id="nome" placeholder="Como prefere ser chamada?" />
+        </div>
+        <div class="fg">
+          <label for="wa">WhatsApp</label>
+          <input type="tel" id="wa" placeholder="(41) 9 0000-0000" />
+        </div>
+        <div class="fg">
+          <label for="int">Principal interesse</label>
+          <select id="int">
+            <option value="" disabled selected>Selecione um tratamento</option>
+            <option>Limpeza de Pele + Peeling (oferta do mês)</option>
+            <option>Lifting Facial</option>
+            <option>Tratamento de Manchas</option>
+            <option>Hidratação Profunda</option>
+            <option>Modelagem Corporal</option>
+            <option>Quero avaliação completa</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label for="msg">Algo sobre sua pele? <span style="color:var(--muted);font-size:10px;text-transform:none;letter-spacing:0;font-weight:400">(opcional)</span></label>
+          <textarea id="msg" placeholder="Conta um pouco. Ajuda a preparar sua avaliação."></textarea>
+        </div>
+        <button class="f-submit" onclick="handleSubmit()">Agendar avaliação gratuita →</button>
+        <p class="f-note">Retornamos em até 24h · Sem spam · Sem ligações</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <span class="logo">Sua marca aqui</span>
+    <p>Curitiba, PR &nbsp;·&nbsp; contato@suamarca.com.br &nbsp;·&nbsp; (41) 9 0000-0000</p>
+    <p>© 2025 Sua marca aqui. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLUTUANTE -->
+<a class="wa"
+   href="https://wa.me/5541999990000?text=Olá! Vim pelo site e gostaria de agendar uma avaliação gratuita."
+   target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- CSS extra para grid responsivo da seção avaliação -->
+<style>
+  .aval-wrap-outer {
+    min-height: 600px;
+  }
+  @media (max-width: 920px) {
+    .aval-wrap-outer {
+      grid-template-columns: 1fr !important;
+    }
+    .aval-wrap-outer > div:last-child {
+      padding: 56px 28px 64px !important;
+    }
+    .aval-img { height: 340px; }
+  }
+</style>
+
+<script>
+  // Header shadow
+  window.addEventListener('scroll', () => {
+    document.getElementById('hd').style.boxShadow =
+      window.scrollY > 20 ? '0 2px 24px rgba(0,0,0,0.07)' : 'none';
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (!t) return;
+      e.preventDefault();
+      window.scrollTo({ top: t.getBoundingClientRect().top + scrollY - 68, behavior: 'smooth' });
+    });
+  });
+
+  // Countdown
+  function tick() {
+    const now = new Date(), end = new Date(now.getFullYear(), now.getMonth()+1, 0, 23, 59, 59);
+    const d = end - now;
+    if (d <= 0) { document.getElementById('countdown').textContent = 'Encerrado'; return; }
+    const h = String(Math.floor(d/3600000)).padStart(2,'0');
+    const m = String(Math.floor(d%3600000/60000)).padStart(2,'0');
+    const s = String(Math.floor(d%60000/1000)).padStart(2,'0');
+    document.getElementById('countdown').textContent = `${h}:${m}:${s}`;
+  }
+  tick(); setInterval(tick, 1000);
+
+  // Submit
+  function handleSubmit() {
+    const nome = document.getElementById('nome').value.trim();
+    const wa   = document.getElementById('wa').value.trim();
+    const int  = document.getElementById('int').value;
+    const msg  = document.getElementById('msg').value.trim();
+    if (!nome || !wa) { alert('Por favor, preencha seu nome e WhatsApp.'); return; }
+    const txt = encodeURIComponent(
+      `Olá! Me chamo ${nome} e quero agendar uma avaliação gratuita.\nInteresse: ${int||'Avaliação completa'}\n${msg?'Obs: '+msg:''}`
+    );
+    window.open(`https://wa.me/5541999990000?text=${txt}`, '_blank');
+    /*
+    // WEBHOOK (n8n / Make / RD Station):
+    fetch('SUA_URL', { method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({nome, whatsapp:wa, interesse:int, mensagem:msg})
+    });
+    */
+  }
+</script>
+</body>
+</html>
